@@ -58,7 +58,11 @@ RSpec.configure do |config|
     DatabaseCleaner.startegy = :transaction
   end
 
-  
+  config.around(:each) do |example|
+    DatabaseCleaner.example do 
+      example.run
+    end
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
