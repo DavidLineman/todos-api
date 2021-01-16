@@ -35,7 +35,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-Should::Matchers.configure do |confg|
+Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
@@ -55,7 +55,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do 
     DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.startegy = :transaction
+    DatabaseCleaner.strategy = :transaction
   end
 
   config.around(:each) do |example|
