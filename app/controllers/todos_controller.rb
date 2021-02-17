@@ -1,2 +1,17 @@
 class TodosController < ApplicationController
+  before_action :set_todo, only: [:show, :update, :destroy]
+
+  # GET Todos
+  def index
+    @todos = Todo.all
+    json_response(@todos)
+  end
+
+  # POST /todos
+  def create 
+    @todo = Todo.create!(todo_params)
+    json_response(@todo, :created)
+  end
+
+  # GET /todos/:id
 end
