@@ -23,7 +23,7 @@ RSpec.describe "Todos API", type: :request do
 
   # Test suite for GET /todos/:id
   describe 'GET /todos/:id' do
-    before { get "/todos/#{todos_id}" }
+    before { get "/todos/#{todo_id}" }
 
     context 'when the record exists' do
       it 'returns the todo' do 
@@ -37,7 +37,7 @@ RSpec.describe "Todos API", type: :request do
     end 
 
     context 'when the record does not exist' do
-      let(:todo) { 100 }
+      let(:todo_id) { 100 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
@@ -58,11 +58,11 @@ RSpec.describe "Todos API", type: :request do
       before { post '/todos', params: valid_attributes }
 
       it 'creates a todo' do 
-        expect(json[title]).to eq('Learn Elm')
+        expect(json['title']).to eq('Learn Elm')
       end
 
       it 'returns status code 201' do
-        expect(response).to have_http_status(210)
+        expect(response).to have_http_status(201)
       end 
     end 
 

@@ -17,6 +17,8 @@ gem 'puma', '~> 5.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
+gem 'rubocop-rspec', require: false
+gem 'rubocop-faker'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
