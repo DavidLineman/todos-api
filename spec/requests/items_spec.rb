@@ -56,7 +56,7 @@ RSpec.describe "Items", type: :request do
     end 
 
     it 'returns a not found message' do 
-      expect(response).to match(/Couldn't find item/)
+      expect(response.body).to match(/Couldn't find Item/)
     end 
   end 
 end 
@@ -66,7 +66,7 @@ describe 'POST /todos/:todo_id/items' do
   let(:valid_attributes) { { name: 'Visit Narnia', done: false } }
 
   context 'when request attributes are valid' do 
-    before { post "/todos/#{todo_id}/items"}
+    before { post "/todos/#{todo_id}/items", params: valid_attributes }
 
     it 'returns status code 201' do 
       expect(response).to have_http_status(201)
@@ -74,14 +74,14 @@ describe 'POST /todos/:todo_id/items' do
   end 
 
   context 'when an invalid request' do
-    before { post "/todo/#{todo_id}/items", params: {} }
+    before { post "/todos/#{todo_id}/items", params: {} }
 
     it 'returns status code 422' do 
       expect(response).to have_http_status(422)
     end 
 
     it 'returns a failure message' do 
-      expect(repsonse.body).to match(/Validation failed: Name can't be blank/)
+      expect(response.body).to match(/Validation failed: Name can't be blank/)
     end 
   end 
 end 
@@ -90,7 +90,7 @@ end
 describe 'PUT /todos/:todo_id/items/:id' do 
   let(:valid_attributes) { { name: 'Mozart' } }
 
-  before { put "/todos/#{todo_id}/items/#{:id}", params: valid_attributes }
+  before { put "/todos/#{todo_id}/items/#{id}", params: valid_attributes }
 
   context 'when item exists' do
     it 'returns status code 204' do
@@ -111,7 +111,7 @@ describe 'PUT /todos/:todo_id/items/:id' do
     end 
 
     it 'returns a not found message' do 
-      expect(repsonse).to mathch(/Couldn't find Item/)
+      expect(response.body).to match(/Couldn't find Item/)
     end 
   end
 end 
