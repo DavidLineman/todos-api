@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   # GET /todos/:todo_id/items
   def show
-    @json_response(@item)
+    json_response(@item)
   end 
 
   # POST /todos/:todo_id/items/:id
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def set_todo_item
-    @item = @todo.find_by!(id: params[:id]) if @todo 
+    @item = @todo.items.find_by!(id: params[:id]) if @todo 
   end 
 
 end
