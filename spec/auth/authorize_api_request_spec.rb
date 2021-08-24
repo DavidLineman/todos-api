@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AuthorizeApiRequests do 
+RSpec.describe AuthorizeApiRequest do 
   # Create test user
   let(:user) { create(:user) }
   # Mock `Authorization` header
@@ -50,7 +50,7 @@ RSpec.describe AuthorizeApiRequests do
           expect { request_obj.call }
             .to raise_error(
               ExceptionHandler::InvalidToken,
-              /Siganture has expired/
+              /Signature has expired/
             )
         end
       end
