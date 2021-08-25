@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Users API", type: :request do
-  let(:users) { build(:user) }
+  let(:user) { build(:user) }
   let(:headers) { valid_headers.except('Authorization') }
   let(:valid_attributes) do
     attributes_for(:user, password_confirmation: user.password)
@@ -21,7 +21,7 @@ RSpec.describe "Users API", type: :request do
       end 
 
       it 'returns an authentication token' do
-        expect(json['auth_token']).not_t be_nil
+        expect(json['auth_token']).not_to be_nil
       end 
     end 
 
@@ -33,7 +33,7 @@ RSpec.describe "Users API", type: :request do
       end 
 
       it 'returns a failure message' do
-        except(json['message'])
+        expect(json['message'])
           .to match(/Validation failed: Password can't be blank, Name can't be blank, Email can't be blank, Password digest can't be blank/)
       end 
     end 
