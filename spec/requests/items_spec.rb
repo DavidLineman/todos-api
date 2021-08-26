@@ -34,6 +34,7 @@ RSpec.describe "Items", type: :request do
       expect(response.body).to match(/Couldn't find Todo/)
     end 
   end
+  
  end
 
  # Test suite for GET /todos/:todo_id/items/:id
